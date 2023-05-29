@@ -2,7 +2,6 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql"%>
 <%@ taglib prefix="util" uri="http://icts.uiowa.edu/tagUtil"%>
-<%@ taglib prefix="tspace" uri="http://slis.uiowa.edu/tspace"%>
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
@@ -30,7 +29,7 @@
                 <tr><th>Slot 1</th><td>${param.slot1}</td></tr>
             </table>
             <c:if test="${param.mode == 'instantiate' }">
-                <sql:update dataSource="jdbc/AcknowledgementsTagLib">
+                <sql:update dataSource="jdbc/InCiteTagLib">
                     insert into pubmed_central_ack_stanford.template(fragment,tgrep,mode,relation) values(?,?,?,?)
                     <sql:param>${param.fragment}</sql:param>
                     <sql:param>${param.tgrep}</sql:param>
@@ -39,7 +38,7 @@
                 </sql:update>
             </c:if>
             <c:if test="${param.mode == 'promote' }">
-                <sql:update dataSource="jdbc/AcknowledgementsTagLib">
+                <sql:update dataSource="jdbc/InCiteTagLib">
                     insert into pubmed_central_ack_stanford.template(fragment,tgrep,mode) values(?,?,?)
                     <sql:param>${param.fragment}</sql:param>
                     <sql:param>${param.tgrep}</sql:param>
@@ -47,7 +46,7 @@
                 </sql:update>
             </c:if>
             <c:if test="${param.mode == 'store' }">
-                <sql:update dataSource="jdbc/AcknowledgementsTagLib">
+                <sql:update dataSource="jdbc/InCiteTagLib">
                     insert into pubmed_central_ack_stanford.template(fragment,tgrep,mode,relation,slot0,slot1) values(?,?,?,?,?,?)
                     <sql:param>${param.fragment}</sql:param>
                     <sql:param>${param.tgrep}</sql:param>
@@ -58,7 +57,7 @@
                 </sql:update>
             </c:if>
 			</div>
-			<tspace:server spaceName="PMC" hostName="localhost">
+			<tspace:server spaceName="PMC" hostName="deep-thought.slis.uiowa.edu">
     		      <tspace:write request="refragment" arg1="${param.fragment}"/>
  			</tspace:server>
 			<c:if test="${not empty param.fragment}"><a href="generate.jsp?fragment=${param.fragment}&pattern=${param.pattern}">Generate fragment: ${param.fragment}</a></c:if><br>

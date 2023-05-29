@@ -25,9 +25,9 @@
                     <th>Organization</th>
                 </tr>
                 <sql:query var="persons" dataSource="jdbc/AcknowledgementsTagLib">
-                    select organization,organization_id,count(*) as count
-                    from entity.organization,entity.organization_mention
-                    where organization.id=organization_mention.organization_id
+                    select organization,organization.id,count(*) as count
+                    from extraction.organization,extraction.organization_mention
+                    where organization.id=organization_mention.id
                     group by 1,2
                     order by 3 desc, 1 limit 1000;
                 </sql:query>
@@ -35,7 +35,7 @@
                     varStatus="rowCounter">
                     <tr>
                         <td align=right>${row.count}</td>
-                        <td><a href="organization.jsp?id=${row.organization_id}">${row.organization_id}</a></td>
+                        <td><a href="organization.jsp?id=${row.id}">${row.id}</a></td>
                         <td>${row.organization }</td>
                     </tr>
                 </c:forEach>

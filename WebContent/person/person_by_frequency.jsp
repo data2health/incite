@@ -25,9 +25,9 @@
                     <th>Person</th>
                 </tr>
                 <sql:query var="persons" dataSource="jdbc/AcknowledgementsTagLib">
-                    select last_name||', '||first_name as person,person_id,count(*) as count
-                    from entity.person,entity.person_mention
-                    where person.id=person_mention.person_id
+                    select last_name||', '||first_name as person,person.id,count(*) as count
+                    from extraction.person,extraction.person_mention
+                    where person.id=person_mention.id
                     and length(first_name) > 0 and last_name~'^[A-Z]'
                     group by 1,2
                     order by 3 desc limit 1000;
@@ -36,7 +36,7 @@
                     varStatus="rowCounter">
                     <tr>
                         <td align=right>${row.count}</td>
-                        <td><a href="person.jsp?id=${row.person_id}">${row.person_id}</a></td>
+                        <td><a href="person.jsp?id=${row.id}">${row.id}</a></td>
                         <td>${row.person }</td>
                     </tr>
                 </c:forEach>

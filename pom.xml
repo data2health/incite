@@ -67,11 +67,11 @@
             <artifactId>jstl</artifactId>
             <version>1.1.2</version>
         </dependency>
-  <dependency>
-    <groupId>org.apache.logging.log4j</groupId>
-    <artifactId>log4j-api</artifactId>
-    <version>2.5</version>
-  </dependency>
+		<dependency>
+			<groupId>org.apache.logging.log4j</groupId>
+			<artifactId>log4j-core</artifactId>
+			<version>2.17.0</version>
+		</dependency>
         <dependency>
             <groupId>edu.uiowa.icts.taglib</groupId>
             <artifactId>UtilTagLib</artifactId>
@@ -85,7 +85,7 @@
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
-            <version>9.3-1102-jdbc4</version>
+			<version>42.2.14.jre7</version>
         </dependency>
         <dependency>
         	<groupId>InCiteTagLib</groupId>
